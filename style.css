@@ -1,0 +1,149 @@
+body {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff 0%, #ddd 55%);
+}
+a.how-to {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 5vmin;
+  color: #222;
+  text-shadow: 0 0 1px #000a;
+}
+.wrap {
+  width: 80vmin;
+  height: 60vmin;
+  position: relative;
+  filter: drop-shadow(0 0 10px #0003);
+}
+.point {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background: red;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 10;
+}
+.point.r,
+.point.t,
+.point.q,
+.point.s {
+  opacity: 0.1;
+}
+.point.p {
+  pointer-events: unset;
+  cursor: move;
+  transform: translate(-50%, -50%) scale(1.25);
+  text-indent: -100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.page {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.page.front {
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(#222, #444, #333);
+  box-sizing: border-box;
+  color: #eee;
+}
+.page.front > .content {
+  display: grid;
+  place-content: center;
+  height: 100%;
+}
+.page.back {
+  z-index: 2;
+}
+.page.back > .content {
+  width: 100%;
+  height: 100%;
+}
+.page.back > .content img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: linear-gradient(#222, #444, #333);
+}
+.page.bottom {
+  z-index: 0;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
+  overflow: auto;
+  -webkit-clip-path: url(#bar);
+          clip-path: url(#bar);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+  color: white;
+  filter: drop-shadow(0 0 10px red);
+  transition: all 0.3s;
+}
+.page.bottom a {
+  text-decoration: underline;
+  color: #eee;
+}
+.page.bottom::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transform: scale(1.3);
+  background: #333;
+  -webkit-clip-path: url(#bar);
+          clip-path: url(#bar);
+}
+.page.bottom:before {
+  content: "";
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  z-index: -1;
+  display: block;
+  width: 200%;
+  height: 200%;
+  background: repeating-conic-gradient(lightblue, transparent, lightsalmon, transparent, lightblue 90deg);
+  -webkit-animation: 10s f infinite linear;
+          animation: 10s f infinite linear;
+}
+@-webkit-keyframes f {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes f {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.page.bottom:hover {
+  filter: drop-shadow(0 0 10px purple);
+  background: transparent;
+}
+.canvas {
+  width: 100%;
+  height: 100%;
+  background: #0003;
+  display: none;
+}
